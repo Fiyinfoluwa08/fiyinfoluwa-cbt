@@ -3,46 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIYINFOLUWA CBT</title>
+    <title>FIYINFOLUWA CNT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background: linear-gradient(135deg, #007bff, #00aaff);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
             color: white;
         }
 
+        /* Navbar */
+        nav {
+            background-color: #333;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffdd57;
+        }
+
+        /* General Container */
         .container {
+            padding: 100px 20px 20px; /* Adjusted for fixed navbar */
+            text-align: center;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 img {
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+        }
+
+        .form-container, .about-container, .test-container {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 350px;
-        }
-
-        h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-        }
-
-        p {
-            color: #555;
-            font-size: 1.1rem;
-        }
-
-        .form-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            text-align: center;
+            margin: 0 auto;
         }
 
         input[type="email"],
@@ -66,20 +97,199 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+        }
+
+        /* Dashboard and Test Styles */
+        .dashboard, .about-container {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #timer {
+            font-size: 2rem;
+            color: #007bff;
+            margin-top: 20px;
+        }
+
+        .question-container {
+            margin: 20px 0;
+        }
+
+        .question {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        .options {
+            margin: 10px 0;
+        }
+
+        .options button {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .options button:hover {
+            background-color: #e0e0e0;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>FIYINFOLUWA CBT</h1>
-        <p>Coming Soon...</p>
-        <div class="form-container">
-            <h2>Sign Up</h2>
-            <form>
-                <input type="email" id="email" placeholder="Enter your email" required><br>
-                <input type="password" id="password" placeholder="Enter your password" required><br>
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
+
+<!-- Navbar -->
+<nav>
+    <ul>
+        <li><a href="#landing-page">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#signup">Sign Up</a></li>
+        <li><a href="#dashboard" style="display:none;" id="test-link">Start Test</a></li>
+    </ul>
+</nav>
+
+<!-- Landing Page -->
+<div id="landing-page" class="container">
+    <h1><img src="https://img.icons8.com/ios/50/000000/book.png" alt="Book Icon">FIYINFOLUWA CNT</h1>
+    <p>Welcome to FIYINFOLUWA CNT - The Ultimate JAMB CBT Practice Platform!</p>
+    <div class="form-container" id="signup">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <input type="email" id="email" placeholder="Enter your email" required><br>
+            <input type="password" id="password" placeholder="Enter your password" required><br>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p id="error-message" class="error"></p>
     </div>
-</body>
-</html>
+</div>
+
+<!-- About Page -->
+<div id="about" class="about-container">
+    <h2>About FIYINFOLUWA CNT</h2>
+    <p>FIYINFOLUWA CNT is a platform designed to help students prepare for the JAMB (Joint Admissions and Matriculation Board) exams. Our CBT platform provides a realistic test-taking experience with random questions, a timer, and the option to submit your test once completed.</p>
+    <h3>How to Navigate:</h3>
+    <ul>
+        <li>Sign up using your email and password.</li>
+        <li>Start your JAMB practice test from your dashboard.</li>
+        <li>Track your time and answer questions as you go.</li>
+        <li>Submit your test once you finish.</li>
+    </ul>
+</div>
+
+<!-- Dashboard (after Sign-Up) -->
+<div id="dashboard" class="dashboard" style="display: none;">
+    <h2>Welcome to FIYINFOLUWA CNT</h2>
+    <p>Start your JAMB practice test</p>
+    
+    <div id="timer">Time Remaining: 2:00:00</div>
+    
+    <div class="question-container" id="question-container">
+        <!-- Question will appear here -->
+    </div>
+    
+    <button id="submit-btn" style="margin-top: 20px;">Submit Test</button>
+</div>
+
+<script>
+    // Navbar Logic
+    const signupLink = document.querySelector('[href="#signup"]');
+    const testLink = document.querySelector('[href="#dashboard"]');
+    const landingPage = document.getElementById('landing-page');
+    const dashboard = document.getElementById('dashboard');
+    const aboutPage = document.getElementById('about');
+    const errorMessage = document.getElementById('error-message');
+    
+    // Sign Up Form
+    const form = document.getElementById('signup-form');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(email)) {
+            errorMessage.textContent = "Please enter a valid email address.";
+            return;
+        }
+        
+        if (password.length < 6) {
+            errorMessage.textContent = "Password must be at least 6 characters.";
+            return;
+        }
+        
+        alert("Sign Up Successful! Redirecting to Dashboard...");
+        landingPage.style.display = 'none';
+        dashboard.style.display = 'block';
+        testLink.style.display = 'block';
+        startTest();
+    });
+
+    // Dashboard Logic (JAMB Test)
+    const questions = [
+        { question: "What is the capital of Nigeria?", options: ["Abuja", "Lagos", "Kaduna", "Port Harcourt"], answer: "Abuja" },
+        { question: "Who is the President of Nigeria?", options: ["Buhari", "Jonathan", "Obasanjo", "Shagari"], answer: "Buhari" },
+        // More questions can be added here
+    ];
+
+    let currentQuestionIndex = 0;
+    let timer = 7200;
+    let timerInterval;
+
+    function displayQuestion() {
+        const question = questions[currentQuestionIndex];
+        const questionContainer = document.getElementById('question-container');
+        questionContainer.innerHTML = `
+            <div class="question">${question.question}</div>
+            <div class="options">
+                ${question.options.map(option => `<button class="option">${option}</button>`).join('')}
+            </div>
+        `;
+        
+        document.querySelectorAll('.option').forEach(button => {
+            button.addEventListener('click', function() {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    displayQuestion();
+                } else {
+                    alert("You have completed the test!");
+                    document.getElementById('submit-btn').style.display = 'block';
+                }
+            });
+        });
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(function() {
+            const hours = Math.floor(timer / 3600);
+            const minutes = Math.floor((timer % 3600) / 60);
+            const seconds = timer % 60;
+            document.getElementById('timer').textContent = `Time Remaining: ${hours}:${minutes}:${seconds}`;
+            if (timer <= 0) {
+                clearInterval(timerInterval);
+                alert("Time is up! Test submitted automatically.");
+                document.getElementById('submit-btn').style.display = 'block';
+            }
+            timer--;
+        }, 1000);
+    }
+
+    function startTest() {
+        displayQuestion();
+        startTimer();
+    }
+
+    document.getElementById('submit-btn').addEventListener('click', function() {
+        alert("Test Submitted! Thank you for practicing.");
+    });
+</script
