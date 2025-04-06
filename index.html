@@ -3,185 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIYINFOLUWA CNT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>FIYINFOLUWA SCHOLARS CBT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #007bff, #00aaff);
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Beautiful blue gradient */
             color: white;
-        }
-
-        /* Navbar */
-        nav {
-            background-color: #333;
-            padding: 10px 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav ul {
+            height: 100vh;
             display: flex;
             justify-content: center;
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav ul li a:hover {
-            color: #ffdd57;
-        }
-
-        /* General Container */
-        .container {
-            padding: 100px 20px 20px; /* Adjusted for fixed navbar */
-            text-align: center;
-            width: 100%;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            display: flex;
             align-items: center;
-            justify-content: center;
+            flex-direction: column;
         }
 
-        h1 img {
-            margin-right: 10px;
-            width: 30px;
-            height: 30px;
+        /* Main title style */
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
-        .form-container, .about-container, .test-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px;
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
-            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
         }
 
         input[type="email"],
         input[type="password"] {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
+            margin: 15px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 1rem;
         }
 
         button {
-            background-color: #007bff;
+            background-color: #ff8a00;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
+            width: 100%;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #e52e71;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 10px;
         }
 
         .error {
             color: red;
             font-size: 0.9rem;
-        }
-
-        /* Dashboard and Test Styles */
-        .dashboard, .about-container {
-            background-color: #fff;
-            color: #333;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #timer {
-            font-size: 2rem;
-            color: #007bff;
-            margin-top: 20px;
-        }
-
-        .question-container {
-            margin: 20px 0;
-        }
-
-        .question {
-            font-size: 1.1rem;
-            margin: 10px 0;
-        }
-
-        .options {
-            margin: 10px 0;
-        }
-
-        .options button {
-            padding: 10px;
-            margin: 5px;
-            background-color: #f1f1f1;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .options button:hover {
-            background-color: #e0e0e0;
-        }
-
-        /* Popup Modal */
-        #popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            color: black;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 200;
-        }
-
-        #popup button {
-            margin-top: 10px;
+            text-align: center;
         }
 
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav>
-    <ul>
-        <li><a href="#landing-page">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#signup">Sign Up</a></li>
-        <li><a href="#test" style="display:none;" id="start-test-link">Start Test</a></li>
-    </ul>
-</nav>
-
-<!-- Landing Page -->
-<div id="landing-page" class="container">
-    <h1><img src="https://img.icons8.com/ios/50/000000/book.png" alt="Book Icon">FIYINFOLUWA CNT</h1>
-    <p>Welcome to FIYINFOLUWA CNT - The Ultimate JAMB CBT Practice Platform!</p>
-    <div class="form-container" id="signup">
+    <h1>FIYINFOLUWA SCHOLARS CBT</h1>
+    
+    <div class="form-container" id="signup-form-container">
         <h2>Sign Up</h2>
         <form id="signup-form">
             <input type="email" id="email" placeholder="Enter your email" required><br>
@@ -190,103 +90,36 @@
         </form>
         <p id="error-message" class="error"></p>
     </div>
-</div>
 
-<!-- About Page -->
-<div id="about" class="about-container">
-    <h2>About FIYINFOLUWA CNT</h2>
-    <p><strong>FIYINFOLUWA CNT</strong> is an online Computer-Based Test (CBT) platform designed to help students prepare for the JAMB (Joint Admissions and Matriculation Board) exams. It features real JAMB questions, a built-in timer to simulate actual exam conditions, and an interactive interface for practice tests.</p>
-    <h3>Key Features:</h3>
-    <ul>
-        <li><strong>JAMB Practice Tests:</strong> Real, randomly selected questions for all subjects in the JAMB syllabus.</li>
-        <li><strong>Timer:</strong> A 2-hour countdown timer for the full exam, with automatic time tracking for every test.</li>
-        <li><strong>User Authentication:</strong> Sign-up and login functionality with email validation.</li>
-        <li><strong>Dashboard:</strong> A personalized dashboard to start and complete practice tests.</li>
-        <li><strong>Test Submission:</strong> Submit your test once finished and get immediate results.</li>
-    </ul>
-    <h3>Goal:</h3>
-    <p>The goal of <strong>FIYINFOLUWA CNT</strong> is to offer an authentic test experience, allowing students to improve their exam readiness and time management skills. By simulating the real exam environment, the platform helps students increase their chances of success in the JAMB exams.</p>
-</div>
+    <script>
+        // Sign Up Form Logic
+        const signupForm = document.getElementById('signup-form');
+        const errorMessage = document.getElementById('error-message');
 
-<!-- Popup Modal -->
-<div id="popup">
-    <h3>Registration Completed!</h3>
-    <p>Your registration is successful. You can now log in and start practicing for your JAMB exam.</p>
-    <button id="close-popup">Close</button>
-</div>
+        signupForm.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-<!-- Test Dashboard -->
-<div id="test" class="test-container" style="display:none;">
-    <h2>Welcome to FIYINFOLUWA CNT</h2>
-    <p>Start your JAMB practice test</p>
-    <div id="timer">Time Remaining: 2:00:00</div>
-    <div class="question-container" id="question-container"></div>
-    <button id="submit-btn" style="margin-top: 20px;">Submit Test</button>
-</div>
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-<script>
-    // Navbar Logic
-    const signupForm = document.getElementById('signup-form');
-    const errorMessage = document.getElementById('error-message');
-    const popup = document.getElementById('popup');
-    const closePopupBtn = document.getElementById('close-popup');
-    const startTestLink = document.getElementById('start-test-link');
-    const testContainer = document.getElementById('test');
-    const landingPage = document.getElementById('landing-page');
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                errorMessage.textContent = "Please enter a valid email address.";
+                return;
+            }
 
-    // Sign Up Logic
-    signupForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+            if (password.length < 6) {
+                errorMessage.textContent = "Password must be at least 6 characters.";
+                return;
+            }
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        if (!emailPattern.test(email)) {
-            errorMessage.textContent = "Please enter a valid email address.";
-            return;
-        }
-
-        if (password.length < 6) {
-            errorMessage.textContent = "Password must be at least 6 characters.";
-            return;
-        }
-
-        // Simulate registration success
-        setTimeout(function() {
+            // If the form is valid, simulate successful registration
             alert("Registration successful!");
-            landingPage.style.display = 'none';
-            testContainer.style.display = 'block';
-            startTestLink.style.display = 'block';
 
-            // Show popup for successful registration
-            popup.style.display = 'block';
-        }, 1000);
-    });
+            // Redirect user to the homepage or dashboard after successful signup
+            window.location.href = "home.html";  // Replace "home.html" with your desired page for testing
+        });
+    </script>
 
-    closePopupBtn.addEventListener('click', function() {
-        popup.style.display = 'none';
-    });
-
-    // Test Logic
-    const questions = [
-        { question: "What is the capital of Nigeria?", options: ["Abuja", "Lagos", "Kaduna", "Port Harcourt"], answer: "Abuja" },
-        { question: "Who is the President of Nigeria?", options: ["Buhari", "Jonathan", "Obasanjo", "Shagari"], answer: "Buhari" }
-    ];
-
-    let currentQuestionIndex = 0;
-    let timer = 7200; // 2 hours in seconds
-    let timerInterval;
-
-    function displayQuestion() {
-        const question = questions[currentQuestionIndex];
-        const questionContainer = document.getElementById('question-container');
-        questionContainer.innerHTML = `
-            <div class="question">${question.question}</div>
-            <div class="options">
-                ${question.options.map(option => `<button class="option">${option}</button>`).join('')}
-            </div>
-        `;
-        
-        document.querySelectorAll('.option').forEach(button => {
-            button.addEventListener('click
+</body>
+</html>
