@@ -144,6 +144,25 @@
             background-color: #e0e0e0;
         }
 
+        /* Popup Modal */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 200;
+        }
+
+        #popup button {
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -154,7 +173,7 @@
         <li><a href="#landing-page">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#signup">Sign Up</a></li>
-        <li><a href="#dashboard" style="display:none;" id="test-link">Start Test</a></li>
+        <li><a href="#test" style="display:none;" id="start-test-link">Start Test</a></li>
     </ul>
 </nav>
 
@@ -176,74 +195,87 @@
 <!-- About Page -->
 <div id="about" class="about-container">
     <h2>About FIYINFOLUWA CNT</h2>
-    <p>FIYINFOLUWA CNT is a platform designed to help students prepare for the JAMB (Joint Admissions and Matriculation Board) exams. Our CBT platform provides a realistic test-taking experience with random questions, a timer, and the option to submit your test once completed.</p>
-    <h3>How to Navigate:</h3>
+    <p><strong>FIYINFOLUWA CNT</strong> is an online Computer-Based Test (CBT) platform designed to help students prepare for the JAMB (Joint Admissions and Matriculation Board) exams. It features real JAMB questions, a built-in timer to simulate actual exam conditions, and an interactive interface for practice tests.</p>
+    <h3>Key Features:</h3>
     <ul>
-        <li>Sign up using your email and password.</li>
-        <li>Start your JAMB practice test from your dashboard.</li>
-        <li>Track your time and answer questions as you go.</li>
-        <li>Submit your test once you finish.</li>
+        <li><strong>JAMB Practice Tests:</strong> Real, randomly selected questions for all subjects in the JAMB syllabus.</li>
+        <li><strong>Timer:</strong> A 2-hour countdown timer for the full exam, with automatic time tracking for every test.</li>
+        <li><strong>User Authentication:</strong> Sign-up and login functionality with email validation.</li>
+        <li><strong>Dashboard:</strong> A personalized dashboard to start and complete practice tests.</li>
+        <li><strong>Test Submission:</strong> Submit your test once finished and get immediate results.</li>
     </ul>
+    <h3>Goal:</h3>
+    <p>The goal of <strong>FIYINFOLUWA CNT</strong> is to offer an authentic test experience, allowing students to improve their exam readiness and time management skills. By simulating the real exam environment, the platform helps students increase their chances of success in the JAMB exams.</p>
 </div>
 
-<!-- Dashboard (after Sign-Up) -->
-<div id="dashboard" class="dashboard" style="display: none;">
+<!-- Popup Modal -->
+<div id="popup">
+    <h3>Registration Completed!</h3>
+    <p>Your registration is successful. You can now log in and start practicing for your JAMB exam.</p>
+    <button id="close-popup">Close</button>
+</div>
+
+<!-- Test Dashboard -->
+<div id="test" class="test-container" style="display:none;">
     <h2>Welcome to FIYINFOLUWA CNT</h2>
     <p>Start your JAMB practice test</p>
-    
     <div id="timer">Time Remaining: 2:00:00</div>
-    
-    <div class="question-container" id="question-container">
-        <!-- Question will appear here -->
-    </div>
-    
+    <div class="question-container" id="question-container"></div>
     <button id="submit-btn" style="margin-top: 20px;">Submit Test</button>
 </div>
 
 <script>
     // Navbar Logic
-    const signupLink = document.querySelector('[href="#signup"]');
-    const testLink = document.querySelector('[href="#dashboard"]');
-    const landingPage = document.getElementById('landing-page');
-    const dashboard = document.getElementById('dashboard');
-    const aboutPage = document.getElementById('about');
+    const signupForm = document.getElementById('signup-form');
     const errorMessage = document.getElementById('error-message');
-    
-    // Sign Up Form
-    const form = document.getElementById('signup-form');
-    
-    form.addEventListener('submit', function(event) {
+    const popup = document.getElementById('popup');
+    const closePopupBtn = document.getElementById('close-popup');
+    const startTestLink = document.getElementById('start-test-link');
+    const testContainer = document.getElementById('test');
+    const landingPage = document.getElementById('landing-page');
+
+    // Sign Up Logic
+    signupForm.addEventListener('submit', function(event) {
         event.preventDefault();
+
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        
+
         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         if (!emailPattern.test(email)) {
             errorMessage.textContent = "Please enter a valid email address.";
             return;
         }
-        
+
         if (password.length < 6) {
             errorMessage.textContent = "Password must be at least 6 characters.";
             return;
         }
-        
-        alert("Sign Up Successful! Redirecting to Dashboard...");
-        landingPage.style.display = 'none';
-        dashboard.style.display = 'block';
-        testLink.style.display = 'block';
-        startTest();
+
+        // Simulate registration success
+        setTimeout(function() {
+            alert("Registration successful!");
+            landingPage.style.display = 'none';
+            testContainer.style.display = 'block';
+            startTestLink.style.display = 'block';
+
+            // Show popup for successful registration
+            popup.style.display = 'block';
+        }, 1000);
     });
 
-    // Dashboard Logic (JAMB Test)
+    closePopupBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+
+    // Test Logic
     const questions = [
         { question: "What is the capital of Nigeria?", options: ["Abuja", "Lagos", "Kaduna", "Port Harcourt"], answer: "Abuja" },
-        { question: "Who is the President of Nigeria?", options: ["Buhari", "Jonathan", "Obasanjo", "Shagari"], answer: "Buhari" },
-        // More questions can be added here
+        { question: "Who is the President of Nigeria?", options: ["Buhari", "Jonathan", "Obasanjo", "Shagari"], answer: "Buhari" }
     ];
 
     let currentQuestionIndex = 0;
-    let timer = 7200;
+    let timer = 7200; // 2 hours in seconds
     let timerInterval;
 
     function displayQuestion() {
@@ -257,39 +289,4 @@
         `;
         
         document.querySelectorAll('.option').forEach(button => {
-            button.addEventListener('click', function() {
-                currentQuestionIndex++;
-                if (currentQuestionIndex < questions.length) {
-                    displayQuestion();
-                } else {
-                    alert("You have completed the test!");
-                    document.getElementById('submit-btn').style.display = 'block';
-                }
-            });
-        });
-    }
-
-    function startTimer() {
-        timerInterval = setInterval(function() {
-            const hours = Math.floor(timer / 3600);
-            const minutes = Math.floor((timer % 3600) / 60);
-            const seconds = timer % 60;
-            document.getElementById('timer').textContent = `Time Remaining: ${hours}:${minutes}:${seconds}`;
-            if (timer <= 0) {
-                clearInterval(timerInterval);
-                alert("Time is up! Test submitted automatically.");
-                document.getElementById('submit-btn').style.display = 'block';
-            }
-            timer--;
-        }, 1000);
-    }
-
-    function startTest() {
-        displayQuestion();
-        startTimer();
-    }
-
-    document.getElementById('submit-btn').addEventListener('click', function() {
-        alert("Test Submitted! Thank you for practicing.");
-    });
-</script
+            button.addEventListener('click
